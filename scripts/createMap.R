@@ -29,6 +29,12 @@ noll <- lapply(1:length(u), function(i){
 })
 
 
+#########################
+#						#
+# Check out ggmap, no?	#
+#						#
+#########################
+
 ############################
 #TO DO:
 # - Collect full data
