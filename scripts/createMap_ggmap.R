@@ -1,8 +1,8 @@
 library(ggplot2)
 library(ggmap)
-library(RJSONIO)
 library(png)
 library(grid)
+library(animation)
 
 
 setwd('C:/etc/Projects/Data/_Ongoing/Twitter Geo Clock/scripts')
@@ -38,9 +38,11 @@ CreateMap <- function(dfpoints,basemap=NULL,
 	}
 	
 	baseggmap <- ggmap(basemap, extent = "panel") + coord_cartesian()
-	baseggmap + geom_point(aes(x = long, y = lat/2.25),
-						   size = pointsize, pch=19, alpha=0.6, color="#AA2244", data = dfpoints) +
-				xlim(-180,180) + ylim(-45,45)
+	print(baseggmap + geom_point(aes(x = long, y = lat/2.25),
+						   	size = pointsize, pch=19, alpha=0.6,
+							color="#AA2244", data = dfpoints)
+		  			+ xlim(-180,180) + ylim(-45,45) 
+		  )
 
 }
 
@@ -57,29 +59,32 @@ basemap <- get_googlemap(
 	maptype = "roadmap",   # roadmap / terrain / satellite / hybrid)
 	langauage = "en-EN",  
 	zoom  = 1,         
-	color = "color",
+	color = "bw",
+	size=c(640,640),
 	scale = 2,
 )
 
 CreateMap(df[indices,],basemap=basemap)
 
 
-library(animation)
+
+ani.options(ani.width=640,ani.height=480,
+			interval=0.01,
+			outdir = paste(getwd(),"..","data",sep="/"),
+			autobrowse=T)
 
 saveGIF({
-	for (i in 1:10){
+	for (i in 1:length(u)){
 		indices <- df$interval==u[i]
 		CreateMap(df[indices,],basemap=basemap)
-		
 	} 
 },movie.name="test.gif",replace=T)
 
 
 
-############################
+###########################################
 #TO DO:
 # - Collect full data
 # - figure out ranges and stuff
-# - animate
-# - Is there a cleaner map
-##############################
+# - alpha as a function of interval.length
+############################################
