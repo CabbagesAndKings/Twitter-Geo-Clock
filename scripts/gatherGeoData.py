@@ -3,11 +3,11 @@ from __future__ import print_function
 import oauth2 as oauth
 import urllib2 as urllib
 
-access_token_key = "46710702-SqzfnXZxufnl21ZhrZskX68hkA22cmXn3MmNQPbJ0"
-access_token_secret = "344U9Nnntj1izFpOzKnmhsBN5vpFrRw0OUfWiuvjU"
+access_token_key = ""
+access_token_secret = ""
 
-consumer_key = "0k51XWHSPXdQ7RCbsPCffg"
-consumer_secret = "pr0mEgILcHBQpenripWr3nfsSb88cZffBPaJvNgF0k"
+consumer_key = ""
+consumer_secret = ""
 
 _debug = 0
 
